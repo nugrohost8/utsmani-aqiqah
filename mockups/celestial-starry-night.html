@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utsmani Aqiqah — Celestial & Starry Night</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Cinzel:wght@500;700&family=Nunito+Sans:wght@300;400;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#070B24; --night-2:#0E1438; --indigo:#1B2160; --violet:#3B2C78; --plum:#5A3D8F;
+    --gold:#E8C872; --gold-2:#F5DFA0; --silver:#C9D1E8; --mist:#8E98C4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Nunito Sans',sans-serif;color:var(--silver);background:var(--night);line-height:1.65}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;color:#fff;font-weight:600}
+  .container{width:1200px;margin:0 auto;position:relative;z-index:2}
+  a{text-decoration:none;color:inherit}
+  .starfield{
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),
+      radial-gradient(1px 1px at 90px 120px,#fff,transparent),
+      radial-gradient(1.2px 1.2px at 160px 60px,#E8C872,transparent),
+      radial-gradient(1px 1px at 230px 170px,#fff,transparent),
+      radial-gradient(2px 2px at 300px 90px,rgba(255,255,255,.9),transparent),
+      radial-gradient(1px 1px at 370px 20px,#C9D1E8,transparent),
+      radial-gradient(1.4px 1.4px at 50px 200px,#fff,transparent),
+      radial-gradient(1px 1px at 330px 220px,#E8C872,transparent);
+    background-size:400px 250px;
+  }
+
+  /* NAV */
+  nav{position:absolute;top:0;left:0;right:0;z-index:10;padding:26px 0}
+  nav .container{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-mark{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;font-family:'Amiri',serif;font-size:26px;color:var(--gold);box-shadow:0 0 20px rgba(232,200,114,.35),inset 0 0 14px rgba(232,200,114,.2)}
+  .logo b{font-family:'Cinzel',serif;font-size:21px;display:block;line-height:1.1;color:#fff;letter-spacing:1px}
+  .logo small{font-size:10.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold)}
+  .menu{display:flex;gap:36px;font-size:15px;font-weight:600;color:var(--silver)}
+  .menu a.active{color:var(--gold)}
+  .menu a.active::after{content:'✦';display:block;text-align:center;font-size:9px;line-height:0.8}
+  .btn{display:inline-block;padding:14px 30px;border-radius:50px;font-weight:700;font-size:15px;letter-spacing:.3px}
+  .btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold) 50%,#C9A24B);color:var(--night);box-shadow:0 0 30px rgba(232,200,114,.35)}
+  .btn-line{border:1.5px solid rgba(232,200,114,.7);color:var(--gold)}
+
+  /* HERO */
+  .hero{position:relative;height:900px;overflow:hidden;
+    background:radial-gradient(ellipse at 75% 20%,rgba(90,61,143,.55),transparent 55%),
+               radial-gradient(ellipse at 10% 80%,rgba(27,33,96,.9),transparent 60%),
+               linear-gradient(180deg,#05081C 0%,#0E1438 55%,#1B2160 100%)}
+  .hero .starfield{position:absolute;inset:0;opacity:.9}
+  .milky{position:absolute;width:1400px;height:260px;left:-100px;top:180px;transform:rotate(-18deg);
+    background:radial-gradient(ellipse,rgba(201,209,232,.16),rgba(142,152,196,.06) 50%,transparent 70%);filter:blur(10px)}
+  .moon{position:absolute;right:170px;top:130px;width:240px;height:240px;border-radius:50%;
+    box-shadow:-38px 18px 0 0 var(--gold-2);transform:rotate(-20deg);filter:drop-shadow(0 0 40px rgba(245,223,160,.55))}
+  .moon-glow{position:absolute;right:120px;top:90px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(245,223,160,.18),transparent 65%)}
+  .bigstar{position:absolute;color:var(--gold-2);text-shadow:0 0 12px var(--gold)}
+  .lantern{position:absolute;top:0;z-index:3}
+  .hero-content{position:relative;z-index:4;padding-top:165px;width:640px}
+  .eyebrow{display:inline-flex;gap:10px;align-items:center;color:var(--gold);font-size:13px;letter-spacing:3px;text-transform:uppercase;
+    padding:8px 20px;border:1px solid rgba(232,200,114,.35);border-radius:40px;background:rgba(232,200,114,.06)}
+  .hero h1{font-size:62px;line-height:1.05;margin:20px 0}
+  .hero h1 em{font-style:italic;background:linear-gradient(90deg,var(--gold-2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{font-size:18px;max-width:540px;margin-bottom:36px;color:#B7C0E0}
+  .hero .actions{display:flex;gap:16px}
+  .skyline{position:absolute;bottom:0;left:0;width:100%;z-index:3}
+
+  /* STATS */
+  .stats{background:var(--night-2);padding:0 0 20px;position:relative;z-index:5}
+  .stats .container{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(232,200,114,.2);border-radius:24px;
+    background:linear-gradient(180deg,rgba(59,44,120,.35),rgba(14,20,56,.6));padding:36px 20px;margin-top:-70px;backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .stat{text-align:center;border-right:1px solid rgba(232,200,114,.15)}
+  .stat:last-child{border:none}
+  .stat b{font-family:'Cinzel',serif;font-size:38px;color:var(--gold)}
+  .stat span{display:block;font-size:14px;color:var(--mist)}
+
+  section{padding:110px 0;position:relative}
+  .sec-head{text-align:center;max-width:700px;margin:0 auto 60px}
+  .tag{color:var(--gold);font-family:'Cinzel',serif;letter-spacing:4px;font-size:13px;text-transform:uppercase}
+  .tag::before,.tag::after{content:' ✦ '}
+  .sec-head h2{font-size:50px;margin:12px 0 14px;line-height:1.15}
+  .sec-head p{color:var(--mist)}
+
+  /* ABOUT */
+  .about{background:var(--night-2)}
+  .about .container{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .arch{position:relative;height:540px;width:440px;margin:0 auto;border-radius:220px 220px 24px 24px;overflow:hidden;
+    background:radial-gradient(circle at 50% 30%,rgba(245,223,160,.25),transparent 45%),linear-gradient(180deg,var(--violet),var(--indigo) 60%,var(--night));
+    border:1.5px solid rgba(232,200,114,.45);box-shadow:0 0 60px rgba(90,61,143,.5)}
+  .arch .starfield{position:absolute;inset:0;opacity:.7}
+  .arch-outer{position:absolute;inset:-18px;border-radius:240px 240px 34px 34px;border:1px dashed rgba(232,200,114,.3)}
+  .arch-wrap{position:relative;width:440px;margin:0 auto}
+  .float-card{position:absolute;right:-40px;bottom:60px;z-index:5;background:rgba(14,20,56,.85);backdrop-filter:blur(10px);border:1px solid rgba(232,200,114,.35);border-radius:18px;padding:18px 22px;display:flex;gap:14px;align-items:center}
+  .float-card .ic{width:46px;height:46px;border-radius:50%;background:rgba(232,200,114,.15);display:grid;place-items:center;font-size:22px}
+  .about h2{font-size:50px;line-height:1.12;margin:12px 0 22px}
+  .about p{margin-bottom:18px;color:#AEB7DA}
+  .ayat{border-left:2px solid var(--gold);padding:14px 22px;margin:26px 0;background:rgba(232,200,114,.05);border-radius:0 14px 14px 0}
+  .ayat .ar{font-family:'Amiri',serif;font-size:22px;color:var(--gold-2);direction:rtl;text-align:right}
+  .ayat small{color:var(--mist);font-style:italic}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 34px}
+  .checks div{display:flex;gap:10px;align-items:center;font-weight:600;font-size:15px;color:#fff}
+  .checks i{color:var(--gold);font-style:normal}
+
+  /* PACKAGES */
+  .packages{background:linear-gradient(180deg,var(--night-2),var(--night))}
+  .packages .starfield{position:absolute;inset:0;opacity:.35}
+  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .pkg{border-radius:28px;padding:42px 34px;position:relative;background:linear-gradient(180deg,rgba(27,33,96,.7),rgba(14,20,56,.9));border:1px solid rgba(201,209,232,.15)}
+  .pkg.featured{background:linear-gradient(170deg,var(--plum),var(--violet) 45%,var(--indigo));border:1.5px solid var(--gold);transform:translateY(-18px);box-shadow:0 0 60px rgba(232,200,114,.2),0 30px 60px rgba(0,0,0,.4)}
+  .pkg .ribbon{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--night);font-family:'Cinzel';font-weight:700;font-size:12px;padding:6px 20px;border-radius:30px;letter-spacing:2px}
+  .pkg .icon{width:72px;height:72px;border-radius:50%;border:1px solid rgba(232,200,114,.4);display:grid;place-items:center;font-size:32px;margin-bottom:22px;background:rgba(232,200,114,.07)}
+  .pkg h3{font-size:30px;margin-bottom:2px}
+  .pkg .sub{font-size:14px;color:var(--mist)}
+  .price{font-family:'Cinzel',serif;font-size:34px;color:var(--gold);margin:20px 0 4px}
+  .price small{font-family:'Nunito Sans';font-size:14px;color:var(--mist)}
+  .pkg ul{list-style:none;margin:22px 0 30px}
+  .pkg li{padding:9px 0;border-bottom:1px solid rgba(201,209,232,.1);font-size:14.5px;display:flex;gap:10px}
+  .pkg li::before{content:'✦';color:var(--gold)}
+  .pkg .btn{width:100%;text-align:center}
+
+  /* STEPS */
+  .steps{background:radial-gradient(ellipse at 50% 0%,rgba(90,61,143,.45),transparent 60%),var(--night)}
+  .step-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative}
+  .constellation{position:absolute;top:0;left:0;width:100%;height:110px}
+  .step{text-align:center;position:relative}
+  .step .num{width:96px;height:96px;margin:0 auto 24px;border-radius:50%;display:grid;place-items:center;font-size:36px;position:relative;
+    background:radial-gradient(circle,rgba(245,223,160,.25),rgba(27,33,96,.9) 70%);border:1.5px solid var(--gold);box-shadow:0 0 30px rgba(232,200,114,.3)}
+  .step .num span{position:absolute;top:-6px;right:-6px;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--night);font-family:'Cinzel';font-size:14px;font-weight:700;display:grid;place-items:center}
+  .step h3{font-size:26px;margin-bottom:6px}
+  .step p{color:var(--mist);font-size:14.5px;padding:0 10px}
+
+  /* MENU */
+  .menu-sec{background:var(--night-2)}
+  .menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .dish{border-radius:200px 200px 24px 24px;overflow:hidden;background:rgba(27,33,96,.55);border:1px solid rgba(232,200,114,.2);text-align:center}
+  .dish .plate{height:220px;display:grid;place-items:center;background:radial-gradient(circle at 50% 60%,rgba(245,223,160,.25),transparent 60%),linear-gradient(180deg,var(--violet),var(--indigo))}
+  .dish .bowl{width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,#2a2f6e,#141a4a);border:2px solid rgba(232,200,114,.5);box-shadow:0 0 30px rgba(232,200,114,.25);display:grid;place-items:center;font-size:58px}
+  .dish .txt{padding:22px 24px 28px}
+  .dish h3{font-size:24px}
+  .dish p{font-size:14px;color:var(--mist)}
+
+  /* TESTI */
+  .testi{background:linear-gradient(180deg,var(--night-2),var(--night))}
+  .testi .starfield{position:absolute;inset:0;opacity:.4}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .tcard{border-radius:24px;padding:34px;background:rgba(27,33,96,.45);border:1px solid rgba(201,209,232,.12);backdrop-filter:blur(6px)}
+  .stars{color:var(--gold);letter-spacing:4px;margin-bottom:14px}
+  .tcard p{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#DDE2F4;margin-bottom:24px;line-height:1.45}
+  .who{display:flex;gap:14px;align-items:center}
+  .av{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:var(--night);font-weight:700;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+  .who b{display:block;color:#fff}
+  .who small{color:var(--mist)}
+
+  /* CTA */
+  .cta{padding:40px 0 110px;background:var(--night)}
+  .cta-box{border-radius:36px;padding:70px;position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;
+    background:radial-gradient(circle at 90% 20%,rgba(245,223,160,.35),transparent 35%),linear-gradient(120deg,var(--indigo),var(--violet) 55%,var(--plum));border:1px solid rgba(232,200,114,.4)}
+  .cta-box .starfield{position:absolute;inset:0;opacity:.6}
+  .cta-box h2{font-size:50px;line-height:1.1;max-width:620px;position:relative}
+  .cta-box p{color:#C9D1E8;margin-top:12px;position:relative}
+  .cta-box .btn{position:relative;font-size:17px;padding:18px 38px}
+
+  /* FOOTER */
+  footer{background:#04061A;padding:80px 0 30px;border-top:1px solid rgba(232,200,114,.15)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:50px}
+  footer h4{color:var(--gold);font-family:'Cinzel';font-size:16px;letter-spacing:2px;margin-bottom:18px}
+  footer li{list-style:none;padding:5px 0;font-size:14.5px;color:var(--mist)}
+  footer .logo{margin-bottom:18px}
+  footer p{color:var(--mist);font-size:14.5px}
+  .copy{border-top:1px solid rgba(201,209,232,.08);margin-top:50px;padding-top:24px;display:flex;justify-content:space-between;font-size:13px;color:#6b75a3}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="starfield"></div>
+  <div class="milky"></div>
+  <div class="moon-glow"></div>
+  <div class="moon"></div>
+  <span class="bigstar" style="right:460px;top:150px;font-size:26px">✦</span>
+  <span class="bigstar" style="right:110px;top:420px;font-size:18px">✦</span>
+  <span class="bigstar" style="left:720px;top:520px;font-size:14px">✦</span>
+  <span class="bigstar" style="left:90px;top:150px;font-size:12px">✧</span>
+
+  <!-- lanterns -->
+  <svg class="lantern" style="right:560px" width="60" height="300" viewBox="0 0 60 300">
+    <line x1="30" y1="0" x2="30" y2="200" stroke="#E8C872" stroke-width="1.2"/>
+    <path d="M18 200 h24 l6 14 h-36z" fill="#C9A24B"/>
+    <path d="M12 214 h36 q4 30 -6 52 h-24 q-10 -22 -6 -52z" fill="rgba(245,223,160,.85)" stroke="#C9A24B" stroke-width="2"/>
+    <path d="M18 266 h24 l-6 10 h-12z" fill="#C9A24B"/>
+    <circle cx="30" cy="240" r="16" fill="rgba(255,240,190,.6)" filter="blur(4px)"/>
+  </svg>
+  <svg class="lantern" style="right:40px" width="50" height="220" viewBox="0 0 50 220">
+    <line x1="25" y1="0" x2="25" y2="140" stroke="#E8C872" stroke-width="1.2"/>
+    <path d="M15 140 h20 l5 12 h-30z" fill="#C9A24B"/>
+    <path d="M10 152 h30 q3 25 -5 44 h-20 q-8 -19 -5 -44z" fill="rgba(245,223,160,.8)" stroke="#C9A24B" stroke-width="2"/>
+    <path d="M15 196 h20 l-5 8 h-10z" fill="#C9A24B"/>
+  </svg>
+
+  <nav>
+    <div class="container">
+      <a class="logo" href="#"><div class="logo-mark">ع</div><div><b>UTSMANI AQIQAH</b><small>Amanah · Syar'i · Lezat</small></div></a>
+      <div class="menu"><a class="active" href="#">Beranda</a><a href="#">Tentang</a><a href="#">Paket</a><a href="#">Menu</a><a href="#">Testimoni</a><a href="#">Kontak</a></div>
+      <a class="btn btn-gold" href="#">Pesan Sekarang</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow">☾ Layanan Aqiqah Syar'i sejak 2012</span>
+      <h1>Bintang Kecil Telah Lahir, Rayakan dengan <em>Aqiqah Penuh Berkah</em></h1>
+      <p>Utsmani Aqiqah mendampingi keluarga Anda menunaikan sunnah aqiqah — hewan pilihan, penyembelihan sesuai syariat, dan hidangan istimewa yang diantar tepat waktu.</p>
+      <div class="actions"><a class="btn btn-gold" href="#">Lihat Paket Aqiqah</a><a class="btn btn-line" href="#">☾ Konsultasi Gratis</a></div>
+    </div>
+  </div>
+
+  <!-- mosque skyline -->
+  <svg class="skyline" viewBox="0 0 1440 260" preserveAspectRatio="none" height="230">
+    <path fill="#141A4A" opacity=".7" d="M0 200 C200 160 400 190 600 170 C800 150 1000 185 1200 165 C1320 155 1400 170 1440 160 V260 H0Z"/>
+    <g fill="#0A0F2E">
+      <rect x="0" y="215" width="1440" height="45"/>
+      <!-- main dome -->
+      <path d="M560 215 V160 h320 v55z"/>
+      <path d="M600 160 C600 90 680 60 720 30 C760 60 840 90 840 160Z"/>
+      <rect x="717" y="6" width="6" height="26"/>
+      <path d="M720 0 a8 8 0 1 0 6 12 a6 6 0 1 1 -6 -12z" fill="#E8C872"/>
+      <!-- side domes -->
+      <path d="M470 215 V180 h90 v35z"/><path d="M480 180 C480 145 515 130 515 120 C515 130 550 145 550 180Z"/>
+      <path d="M880 215 V180 h90 v35z"/><path d="M890 180 C890 145 925 130 925 120 C925 130 960 145 960 180Z"/>
+      <!-- minarets -->
+      <rect x="420" y="70" width="24" height="145"/><path d="M416 70 h32 l-16 -40z"/><rect x="412" y="110" width="40" height="8"/>
+      <rect x="996" y="70" width="24" height="145"/><path d="M992 70 h32 l-16 -40z"/><rect x="988" y="110" width="40" height="8"/>
+      <!-- houses -->
+      <path d="M80 215 v-40 l40 -30 l40 30 v40z"/><path d="M180 215 v-60 h70 v60z"/><path d="M1200 215 v-50 l35 -25 l35 25 v50z"/><path d="M1290 215 v-35 h80 v35z"/>
+    </g>
+    <g fill="#F5DFA0" opacity=".85">
+      <path d="M700 215 v-30 a20 20 0 0 1 40 0 v30z" opacity=".55"/>
+      <rect x="610" y="175" width="14" height="22" rx="7"/><rect x="816" y="175" width="14" height="22" rx="7"/>
+      <rect x="198" y="175" width="10" height="14"/><rect x="222" y="175" width="10" height="14"/><rect x="113" y="185" width="12" height="14"/>
+      <rect x="1229" y="180" width="12" height="14"/><rect x="1310" y="192" width="10" height="10"/><rect x="1340" y="192" width="10" height="10"/>
+      <rect x="428" y="140" width="8" height="12" rx="4"/><rect x="1004" y="140" width="8" height="12" rx="4"/>
+    </g>
+  </svg>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="container">
+    <div class="stat"><b>12.500+</b><span>Keluarga Terlayani</span></div>
+    <div class="stat"><b>14</b><span>Tahun Pengalaman</span></div>
+    <div class="stat"><b>100%</b><span>Sesuai Syariat</span></div>
+    <div class="stat"><b>4.9 ✦</b><span>Rating Pelanggan</span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="arch-wrap">
+      <div class="arch-outer"></div>
+      <div class="arch">
+        <div class="starfield"></div>
+        <svg style="position:absolute;left:0;bottom:0" width="440" height="540" viewBox="0 0 440 540">
+          <!-- crescent & star -->
+          <circle cx="220" cy="150" r="62" fill="#F5DFA0"/><circle cx="246" cy="134" r="56" fill="#3B2C78"/>
+          <path d="M290 120 l6 14 l15 1 l-12 9 l4 15 l-13 -8 l-13 8 l4 -15 l-12 -9 l15 -1z" fill="#E8C872"/>
+          <!-- baby cradle on cloud -->
+          <ellipse cx="220" cy="420" rx="170" ry="50" fill="rgba(201,209,232,.18)"/>
+          <ellipse cx="150" cy="400" rx="70" ry="38" fill="rgba(201,209,232,.25)"/><ellipse cx="290" cy="405" rx="80" ry="40" fill="rgba(201,209,232,.22)"/>
+          <path d="M120 330 h200 a100 70 0 0 1 -200 0z" fill="#E8C872"/>
+          <path d="M140 330 h160 a80 52 0 0 1 -160 0z" fill="#F5DFA0"/>
+          <circle cx="190" cy="318" r="22" fill="#F8E7C8"/><path d="M168 318 a22 22 0 0 1 44 0z" fill="#C9D1E8"/>
+          <path d="M212 320 C240 300 280 305 300 330 H210z" fill="#C9D1E8"/>
+          <path d="M184 322 q4 3 8 0" stroke="#5A3D8F" stroke-width="2" fill="none"/>
+          <path d="M205 300 q-20 -60 15 -110" stroke="#E8C872" stroke-width="1.5" fill="none" stroke-dasharray="3 5"/>
+        </svg>
+      </div>
+      <div class="float-card"><div class="ic">🕌</div><div><b style="color:#fff">Bersertifikat Halal</b><br><small style="color:var(--mist)">Diawasi Ustadz & Juru Sembelih</small></div></div>
+    </div>
+    <div>
+      <span class="tag">Tentang Kami</span>
+      <h2>Setiap Kelahiran adalah Cahaya yang Patut Disyukuri</h2>
+      <p>Utsmani Aqiqah lahir dari niat sederhana: membantu keluarga muslim menunaikan aqiqah dengan tenang, amanah, dan sesuai tuntunan Rasulullah ﷺ.</p>
+      <p>Hewan dipilih langsung dari peternakan mitra, disembelih juru sembelih bersertifikat, dan diolah oleh chef berpengalaman menjadi hidangan istimewa bagi tamu Anda.</p>
+      <div class="ayat"><div class="ar">كُلُّ غُلَامٍ رَهِينَةٌ بِعَقِيقَتِهِ</div><small>“Setiap anak tergadai dengan aqiqahnya.” — HR. Abu Dawud</small></div>
+      <div class="checks">
+        <div><i>✦</i>Hewan Sehat & Cukup Umur</div><div><i>✦</i>Penyembelihan Syar'i</div>
+        <div><i>✦</i>Chef Profesional</div><div><i>✦</i>Gratis Antar & Sertifikat</div>
+      </div>
+      <a class="btn btn-gold" href="#">Kenali Kami Lebih Dekat →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages">
+  <div class="starfield"></div>
+  <div class="container">
+    <div class="sec-head"><span class="tag">Paket Aqiqah</span><h2>Pilih Paket Sesuai Kebutuhan Keluarga</h2><p>Harga sudah termasuk hewan, penyembelihan, pengolahan, kemasan, dan pengantaran.</p></div>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <div class="icon">🐐</div><h3>Paket Bintang</h3><div class="sub">1 Ekor Kambing · ±60 porsi</div>
+        <div class="price">Rp 2.450.000 <small>/ekor</small></div>
+        <ul><li>Kambing jantan 23–25 kg</li><li>Sate & gulai kambing</li><li>Nasi box + acar & kerupuk</li><li>Sertifikat & foto penyembelihan</li></ul>
+        <a class="btn btn-line" href="#">Pilih Paket</a>
+      </div>
+      <div class="pkg featured">
+        <span class="ribbon">TERLARIS</span>
+        <div class="icon">🐑</div><h3>Paket Rembulan</h3><div class="sub" style="color:#D6CCF0">2 Ekor Kambing · ±120 porsi</div>
+        <div class="price">Rp 4.750.000 <small style="color:#D6CCF0">/paket</small></div>
+        <ul><li>Kambing jantan 25–28 kg</li><li>Sate, gulai & tongseng</li><li>Nasi box premium + buah</li><li>Kartu ucapan custom nama bayi</li><li>Video dokumentasi</li></ul>
+        <a class="btn btn-gold" href="#">Pilih Paket</a>
+      </div>
+      <div class="pkg">
+        <div class="icon">🎁</div><h3>Paket Galaksi</h3><div class="sub">Prasmanan · hingga 200 tamu</div>
+        <div class="price">Rp 7.900.000 <small>/paket</small></div>
+        <ul><li>2 ekor kambing pilihan</li><li>Prasmanan lengkap 6 menu</li><li>Dekorasi syukuran tema bintang</li><li>Tim pelayan di lokasi</li></ul>
+        <a class="btn btn-line" href="#">Pilih Paket</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps">
+  <div class="container">
+    <div class="sec-head"><span class="tag">Alur Pemesanan</span><h2>Empat Langkah Menuju Syukuran yang Tenang</h2><p>Bagai rasi bintang — setiap langkah terhubung rapi dan terarah.</p></div>
+    <div class="step-grid">
+      <svg class="constellation" viewBox="0 0 1200 110" preserveAspectRatio="none"><polyline points="150,48 450,30 750,62 1050,40" fill="none" stroke="rgba(232,200,114,.45)" stroke-width="1.5" stroke-dasharray="4 6"/></svg>
+      <div class="step"><div class="num">📱<span>1</span></div><h3>Konsultasi</h3><p>Hubungi kami via WhatsApp, ceritakan kebutuhan & tanggal acara.</p></div>
+      <div class="step"><div class="num">🐐<span>2</span></div><h3>Pilih Hewan</h3><p>Pilih paket & hewan; kami kirim foto serta video hewan Anda.</p></div>
+      <div class="step"><div class="num">🤲<span>3</span></div><h3>Penyembelihan</h3><p>Disembelih sesuai syariat dengan doa atas nama buah hati.</p></div>
+      <div class="step"><div class="num">🚚<span>4</span></div><h3>Diantar Hangat</h3><p>Hidangan siap saji diantar tepat waktu ke lokasi Anda.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-sec">
+  <div class="container">
+    <div class="sec-head"><span class="tag">Menu Olahan</span><h2>Hidangan Istimewa di Malam Syukuran</h2><p>Diolah dengan rempah pilihan oleh chef berpengalaman.</p></div>
+    <div class="menu-grid">
+      <div class="dish"><div class="plate"><div class="bowl">🍢</div></div><div class="txt"><h3>Sate Kambing</h3><p>Empuk, bumbu kecap & sambal kacang.</p></div></div>
+      <div class="dish"><div class="plate"><div class="bowl">🍛</div></div><div class="txt"><h3>Gulai Kambing</h3><p>Kuah santan rempah gurih meresap.</p></div></div>
+      <div class="dish"><div class="plate"><div class="bowl">🥘</div></div><div class="txt"><h3>Tongseng</h3><p>Manis pedas dengan kol segar.</p></div></div>
+      <div class="dish"><div class="plate"><div class="bowl">🍖</div></div><div class="txt"><h3>Kambing Guling</h3><p>Bakar utuh, cocok untuk prasmanan.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="testi">
+  <div class="starfield"></div>
+  <div class="container">
+    <div class="sec-head"><span class="tag">Testimoni</span><h2>Cerita Bahagia dari Para Orang Tua</h2></div>
+    <div class="testi-grid">
+      <div class="tcard"><div class="stars">✦✦✦✦✦</div><p>“Masakannya enak sekali, tamu banyak yang tanya catering-nya. Prosesnya juga transparan, dikirimi video penyembelihan.”</p><div class="who"><div class="av">RA</div><div><b>Rina Aulia</b><small>Aqiqah putri pertama</small></div></div></div>
+      <div class="tcard"><div class="stars">✦✦✦✦✦</div><p>“Pelayanannya ramah dan tepat waktu. Paket Rembulan sangat worth it untuk acara keluarga besar kami.”</p><div class="who"><div class="av">FH</div><div><b>Fajar Hidayat</b><small>Aqiqah putra kedua</small></div></div></div>
+      <div class="tcard"><div class="stars">✦✦✦✦✦</div><p>“Amanah dan syar'i, insyaAllah tenang. Kartu ucapan dengan nama anak kami jadi kenang-kenangan manis.”</p><div class="who"><div class="av">SM</div><div><b>Siti Maryam</b><small>Aqiqah putra kembar</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="container">
+    <div class="cta-box"><div class="starfield"></div>
+      <div><h2>Siap Menyambut Bintang Kecil Anda dengan Penuh Syukur?</h2><p>Konsultasi gratis — tim kami siap membantu 24 jam.</p></div>
+      <a class="btn btn-gold" href="#">💬 Chat WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div><a class="logo" href="#"><div class="logo-mark">ع</div><div><b>UTSMANI AQIQAH</b><small>Amanah · Syar'i · Lezat</small></div></a><p>Layanan aqiqah & catering syukuran sesuai syariat Islam, melayani wilayah Jabodetabek & sekitarnya.</p></div>
+      <div><h4>LAYANAN</h4><ul><li>Paket Aqiqah</li><li>Catering Syukuran</li><li>Qurban</li><li>Kambing Guling</li></ul></div>
+      <div><h4>PERUSAHAAN</h4><ul><li>Tentang Kami</li><li>Galeri</li><li>Blog Parenting</li><li>FAQ</li></ul></div>
+      <div><h4>HUBUNGI KAMI</h4><ul><li>📍 Jl. Bintang Timur No. 12, Jakarta</li><li>📞 0812-3456-7890</li><li>✉ halo@utsmaniaqiqah.id</li><li>🕘 Setiap hari, 07.00–21.00</li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 Utsmani Aqiqah. All rights reserved.</span><span>Instagram · Facebook · TikTok · YouTube</span></div>
+  </div>
+</footer>
+</body>
+</html>
